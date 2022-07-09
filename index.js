@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const users = require('./routes/users');
+const login = require('./routes/login');
 const app=express();
 
 
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://localhost:27017/Authentication')  // loacal database
         
 app.use(express.json());
 app.use('/api/users',users);
+app.use('/api/login',login);
 
 
 
