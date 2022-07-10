@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/devesh-0419/user_auth-backend/issues"
   },
-  "homepage": "https://github.com/devesh-0419/user_auth-backend#readme"
+  "homepage": "https://github.com/devesh-0419/user_auth-backend#readme",
+  "dependencies": {
+    "config": "^3.3.7"
+  }
 }

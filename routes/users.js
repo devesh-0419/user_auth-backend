@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const router=express();
 
 router.get('/',async (req,res)=>{
-  let users = await User.find().select('name');
+  let users = await User.find();
   res.send(users);
 });
 

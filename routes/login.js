@@ -7,11 +7,22 @@ const router=express();
 
 
 router.post('/',async (req,res)=>{
-     let user = User.findOne({email:req.body.email});
-     if(!user) return res.send('Invalid UserID or Password');
-
-     let validPassword= await bcrypt.compare(req.body.password,user.password);
-     if(!validPassword) return res.send('Invalid UserID or Password');
-
+     try {
+          let user = await User.findOne({email:req.body.email});
+           console.log('user', user)
+     if(!user) return res.status(400).send('Invalid UserID or Password');
+           
+     const validPassword= await bcrypt.compare(req.body.password,user.password);
+     if(!validPassword) return res.status(400).send('Invalid UserID or Password');
+     
+          const token = user.generateAuthToken();
+     
+          res.header('x-auth-token',token).send('login sucessfull (^_^)');
+          
+     } catch (error) {
+          console.error("error while login: ",error);
+     }
      
 });
+
+module.exports=router;
