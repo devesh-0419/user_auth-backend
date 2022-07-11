@@ -1,11 +1,13 @@
 const express = require('express');
 const  User= require('../models/user');
+const  auth= require('../middleware/auth');
+const  admin= require('../middleware/admin');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const router=express();
 
-router.get('/',async (req,res)=>{
+router.get('/',[auth,admin],async (req,res)=>{
   let users = await User.find();
   res.send(users);
 });
